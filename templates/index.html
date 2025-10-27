@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GravitasGPT</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="brand">GRAVITAS<span>GPT</span></div>
+        <nav>
+            <button class="nav-btn" id="newChatBtn">New chat</button>
+            <button class="nav-btn" id="searchBtn">Search chat</button>
+            <button class="nav-btn">Library</button>
+            <button class="nav-btn">Projects</button>
+        </nav>
+        <div class="account">
+            <div class="avatar">J</div>
+            <div class="acct-meta">
+                <div class="name">John</div>
+                <div class="tier">Free</div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div></div>
+            <div class="auth">
+                <button class="ghost">Sign up</button>
+                <button class="solid">Sign in</button>
+            </div>
+        </header>
+
+        <section class="stage" id="stage">
+            <h1>Good to see you, John.</h1>
+
+            <div class="chat" id="chat"></div>
+
+            <div class="composer">
+                <button class="plus" title="New message">+</button>
+                <input id="prompt" placeholder="Ask Anything" autocomplete="off" />
+                <select id="model">
+                    <option value="">Auto</option>
+                    <option value="gpt-4o-mini">GPT-4o mini (OpenAI)</option>
+                    <option value="llama-3.1-70b-versatile">Llama-3.1-70B (Groq)</option>
+                </select>
+                <button id="send" class="send" aria-label="Send">↗</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/js/app.js"></script>
+</body>
+
+</html>
