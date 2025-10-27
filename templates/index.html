@@ -1,6 +1,18 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GravitasGPT</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
+<body>
+    <div class="chat-container">
+         <div class="chat-card">
+             <div id="messages" class="messages">
+                 </div>
+             <form id="chatForm" class="input-area">
+                 <input type="text" id="messageInput" placeholder="Send a message..." autocomplete="off">
+                 <button type="submit" id="sendButton">Send</button>
+             </form>
+         </div>
+         <footer class="footer">
+             © 2025 GravitasGPT • Executive Presence AI
+         </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
