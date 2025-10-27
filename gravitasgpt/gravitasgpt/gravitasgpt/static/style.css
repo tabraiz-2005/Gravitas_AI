@@ -1,144 +1,133 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;600&display=swap');
-
+/* --- Base Styles & Background --- */
 body {
-  background: radial-gradient(circle at center, #1b1b1b 0%, #000 80%);
-  color: #f5f5f5;
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
+    background-color: #0a0a0a; /* Deep black background */
+    color: #e0e0e0; /* Light grey text for readability */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Professional font */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-.hero-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
-  z-index: 0;
-  animation: pulse 6s infinite alternate;
+/* --- Main Chat Container --- */
+.chat-container {
+    width: 100%;
+    max-width: 800px; /* Adjust as needed */
+    height: 90vh; /* Adjust height */
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Needed for spotlight positioning */
+    background-color: transparent; /* Container is transparent */
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-@keyframes pulse {
-  from { opacity: 0.8; transform: scale(1); }
-  to { opacity: 1; transform: scale(1.05); }
+/* --- The Chat Card & Spotlight --- */
+.chat-card {
+    background-color: #1a1a1a; /* Very dark grey card */
+    border-radius: 12px;
+    box-shadow:
+        0 0 40px 10px rgba(255, 215, 0, 0.15), /* Outer gold glow (spotlight) */
+        0 4px 15px rgba(0, 0, 0, 0.5);        /* Standard card shadow for depth */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Keep content within rounded corners */
+    position: relative; /* Ensure card is above any potential background elements */
+    transition: box-shadow 0.4s ease-in-out; /* Subtle motion on shadow */
 }
 
-.container {
-  position: relative;
-  z-index: 2;
-  width: 90%;
-  max-width: 700px;
-  background: rgba(0, 0, 0, 0.85);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
-  border-radius: 20px;
-  padding: 25px;
-  backdrop-filter: blur(10px);
+/* Optional: Slightly enhance glow on hover/focus within */
+.chat-card:hover,
+.chat-card:focus-within {
+     box-shadow:
+        0 0 60px 15px rgba(255, 215, 0, 0.25), /* Brighter gold glow */
+        0 6px 20px rgba(0, 0, 0, 0.6);
 }
 
-header {
-  text-align: center;
-  margin-bottom: 15px;
+
+/* --- Message Area --- */
+.messages {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto; /* Allow scrolling for messages */
+    scrollbar-width: thin;
+    scrollbar-color: #444 #1a1a1a;
 }
 
-h1 {
-  font-family: 'Cinzel', serif;
-  color: #d4af37;
-  font-size: 36px;
-  letter-spacing: 1px;
-  margin-bottom: 5px;
+/* Style individual messages (example) */
+.message {
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    max-width: 80%;
 }
 
-h1 span {
-  color: #fefefe;
+.user-message {
+    background-color: #333;
+    color: #f0f0f0;
+    margin-left: auto; /* Align user messages to the right */
 }
 
-.subtitle {
-  color: #bbb;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+.bot-message {
+    background-color: #252525;
+    color: #e0e0e0;
+    margin-right: auto; /* Align bot messages to the left */
 }
 
-.chat-box {
-  background: rgba(25, 25, 25, 0.8);
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  border-radius: 15px;
-  padding: 15px;
-  height: 400px;
-  overflow-y: auto;
-  margin-bottom: 15px;
+/* --- Input Area --- */
+.input-area {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #333; /* Separator line */
+    background-color: #1a1a1a; /* Match card background */
 }
 
-.user, .bot {
-  margin: 10px 0;
-  padding: 10px 14px;
-  border-radius: 10px;
-  line-height: 1.6;
-  animation: fadeIn 0.3s ease;
+.input-area input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 1px solid #444;
+    border-radius: 20px; /* Pill shape */
+    background-color: #252525;
+    color: #e0e0e0;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Subtle focus motion */
 }
 
-.user {
-  background: linear-gradient(90deg, #d4af37, #b8860b);
-  color: #000;
-  text-align: right;
+.input-area input[type="text"]:focus {
+    border-color: #ffd700; /* Gold border on focus */
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); /* Gold glow on focus */
 }
 
-.bot {
-  background: rgba(255, 255, 255, 0.08);
-  border-left: 3px solid #d4af37;
-  color: #f5f5f5;
+.input-area button {
+    background-color: #ffd700; /* Gold button */
+    color: #1a1a1a; /* Dark text */
+    border: none;
+    padding: 0 20px;
+    margin-left: 10px;
+    border-radius: 20px; /* Pill shape */
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.1s ease; /* Motion */
 }
 
-#chat-form {
-  display: flex;
-  gap: 10px;
+.input-area button:hover {
+    background-color: #e6c300; /* Slightly darker gold on hover */
 }
 
-#user-input {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.05);
-  color: #f5f5f5;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 16px;
+.input-area button:active {
+    transform: scale(0.98); /* Click effect */
 }
 
-#user-input::placeholder {
-  color: #888;
-}
-
-button {
-  background: linear-gradient(90deg, #d4af37, #caa22e);
-  color: #000;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
-}
-
-footer {
-  text-align: center;
-  position: absolute;
-  bottom: 15px;
-  color: #555;
-  font-size: 12px;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* --- Footer --- */
+.footer {
+    text-align: center;
+    margin-top: 15px; /* Space above footer */
+    font-size: 0.8rem;
+    color: #777; /* Dim color */
 }
