@@ -10,15 +10,15 @@ PROVIDER = os.getenv("PROVIDER", "openai").lower()
 # ----- Provider clients -----
 client = None
 model_default = None
-
 if PROVIDER == "groq":
     from groq import Groq
-    client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    client = Groq(api_key=os.getenv("GRAVITAS_AI_KEY"))
     model_default = os.getenv("GROQ_MODEL", "llama-3.1-70b-versatile")
 else:
     from openai import OpenAI
-    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-    model_default = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+    client = OpenAI(api_key=os.getenv("GRAVITAS_AI_KEY"))
+    model_default = os.getenv("OPENAI_MODEL", "gpt-4.1")
+
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
 CORS(app)
